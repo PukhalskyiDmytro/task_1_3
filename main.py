@@ -30,31 +30,44 @@ if __name__ == "__main__":
     print(f"Area: {C.area()} Perimeter: {C.perimeter()}")
 
     TEST_FILES = ["input01.txt", "input02.txt", "input03.txt"]
-    figures_area = []
-    figures_perimeter = []
+    figures = []
     for test_file in TEST_FILES:
         with open(test_file, "r") as f:
             for line in f.readlines():
                 try:
                     tmp = line.split()
                     if tmp[0] == "Rectangle":
-                        pass
+                        a, b = map(float, tmp[1:])
+                        r = Rectangle(a, b)
+                        figures.append(r)
                     elif tmp[0] == "Circle":
-                        pass
+                        r = float(tmp[1])
+                        c = Circle(r)
+                        figures.append(c)
                     elif tmp[0] == "Parallelogram":
-                        pass
+                        a, b, h = map(float, tmp[1:])
+                        p = Parallelogram(a, b, h)
+                        figures.append(p)
                     elif tmp[0] == "Triangle":
-                        pass
+                        a, b, c = map(float, tmp[1:])
+                        t = Triangle(a, b, c)
+                        figures.append(t)
                     elif tmp[0] == "Trapeze":
-                        pass
+                        a, b, c, d = map(float, tmp[1:])
+                        p = Trapeze(a, b, c, d)
+                        figures.append(p)
                 except Exception as e:
                     continue
 
-    for f in figures_area:
+    max_area = figures[0].area()
+    max_perimeter = figures[0].perimeter()
+    for f in figures[1:]:
+        area = f.area()
+        if area > max_area:
+            max_area = area
 
+        perimeter = f.perimeter()
+        if perimeter > max_perimeter:
+            max_perimeter = perimeter
 
-    if solutions1:
-        x1 = min(solutions1)
-        x2 = max(solutions1)
-        print(f"Min one root: {x1}")
-        print(f"Max one root: {x2}")
+    print(f"Max area: {max_area}, max perimeter: {max_perimeter}")
