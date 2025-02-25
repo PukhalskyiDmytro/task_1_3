@@ -11,7 +11,7 @@ class Triangle:
 
     def area(self):
         p = (self.a + self.c + self.b)/2
-        return (p(p-self.a)(p-self.b)(p-self.c))**0.5
+        return (p*(p-self.a)*(p-self.b)*(p-self.c))**0.5
 
 class Parallelogram:
     def __init__(self, a, b, h):
